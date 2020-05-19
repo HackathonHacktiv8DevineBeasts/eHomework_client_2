@@ -12,7 +12,8 @@ const reducer = ( state = initialState, action ) => {
         return { ...state, currentTask: payload }
     } else if (type === SET_TASKS) {
         return { ...state, tasks: payload }
-    } else if (type === SET_EMAIL) {
+    } 
+    else if (type === SET_EMAIL) {
         return { ...state, email: payload }
     }
     return state

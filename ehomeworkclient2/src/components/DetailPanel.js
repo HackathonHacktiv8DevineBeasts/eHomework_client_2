@@ -7,7 +7,8 @@ const DetailPanel = () => {
     console.log(task)
     return (
         <div style={{ width: '50vw', height: '80vh' }} className='shadow p-3 m-2 bg-warning rounded d-flex justify-content-center align-items-center'>
-            { task ? <DetailContainer></DetailContainer> : <h2>Please Choose Task</h2>}
+           <DetailContainer></DetailContainer>
+            {/* { task ? <DetailContainer></DetailContainer> : <h2>Please Choose Task</h2>} */}
         </div>
     )
 }

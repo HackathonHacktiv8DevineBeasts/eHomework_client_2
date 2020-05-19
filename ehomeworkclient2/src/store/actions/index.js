@@ -20,7 +20,10 @@ export const fetchTasks = (email) => {
     return (dispatch) => {
         axios({
             method: 'GET',
-            url: `https://ehomework-server.herokuapp.com/task/${email}`
+            url: `https://ehomework-server.herokuapp.com/task/email/${email}`,
+            headers: {
+                token: localStorage.access_token
+            }
         })
         .then(result => {
             console.log(result.data.result)
@@ -40,7 +43,10 @@ export const updateTask = (data) => {
         axios({
             method: 'PUT',
             url: `https://ehomework-server.herokuapp.com/task/edit/${data._id}`,
-            data: updateData
+            data: updateData,
+            headers: {
+                token: localStorage.access_token
+            }
         })
         .then(result => {
             console.log(result.data.result)
@@ -64,7 +70,7 @@ export const login = (data) => {
             })
             .then(result => {
                 console.log(result.data)
-                dispatch(setEmail(result.data.email))
+                // dispatch(setEmail(result.data.email))
                 localStorage.access_token = result.data.token
                 localStorage.email = result.data.email
                 resolve(result.data)

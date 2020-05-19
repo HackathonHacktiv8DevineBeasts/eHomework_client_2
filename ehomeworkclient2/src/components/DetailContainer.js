@@ -31,20 +31,32 @@ const DetailContainer = () => {
     }
     return (
         <div style={{ flex: 3, height: '100%' }}> 
-            <div className="shadow mb-4 rounded bg-light p-1">
-                <h2>{task.taskName}</h2>
+        { !task ? <h2>Please Choose Your Task</h2> : <><div className="card">
+                <div className="card-body d-flex justify-content-between align-items-center">
+                    <h5 style={{ flex: 2 }}>This is Question Link</h5>
+                    <a href={task.viewURL} style={{ flex: 1 }} target="_blank" rel="noopener noreferrer" className='form-control btn-primary'>See Question</a>
+                </div>
             </div>
-            <div className="shadow mt-4 mb-4 rounded bg-light p-1 d-flex flex-column justify-content-start align-items-start" style={{ height: '79%' }}>
-                <h2>Teacher: {task.emailTeacher}</h2>
-                <h2>Description: {task.description}</h2>
-                <h2>Score: {task.score}</h2>
-                <h2>Status: {task.status === false ? 'Not Submitted' : 'Submitted'}</h2>
-                { task.url === '-' ? <h2>Link: {task.url}</h2> : <a href={task.url} target="_blank" rel="noopener noreferrer" className='form-control btn-primary'>Link</a> }
+            <div className="shadow mt-4 mb-4 rounded bg-light p-4 d-flex flex-column justify-content-start align-items-start" style={{ height: '75%' }}>
+                <label htmlFor="teacher">Teacher:</label>
+                <input value={task.emailTeacher} id="teacher" className="form-control" disabled></input>
+                <label htmlFor="description">Description:</label>
+                <textarea value={task.description} id="description" className="form-control" disabled></textarea>                
+                <label htmlFor="Score">Score:</label>
+                <textarea value={task.score} id="Score" className="form-control" disabled></textarea>
+                <label htmlFor="status">Status:</label>
+                <textarea value={task.status === false ? 'Not Submitted' : 'Submitted'} id="status" className="form-control" disabled></textarea>
+                { task.url === '-' ? 
+                <>
+                    <label className="mt-3" htmlFor="link">Your Assignment:</label>
+                    <input value={task.url} id="link" className="mb-1 form-control" disabled></input>
+                </> : <a href={task.url} target="_blank" rel="noopener noreferrer" className='mt-3 form-control btn-primary'>Your Assignment</a> }
             </div>
-            { task.url === '-' ? <div className="shadow mt-4 rounded bg-light p-1 d-flex">
+            { task.url === '-' ? <div className="shadow rounded mb-4 bg-light p-1 d-flex">
                 <input type='file' className='form-control m-2' onChange={handleChange}></input>
                 <button className='form-control btn-primary m-2' onClick={handleSubmit}>Submit</button>
             </div> : <></> }
+            </> }
             
         </div>
     )
